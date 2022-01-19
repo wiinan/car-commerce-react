@@ -19,6 +19,7 @@ import {
   SearchInput,
   Rotate,
   ColorButton,
+  PlayButtonSecundary,
 } from "./layout";
 
 export default function Header({ children, ...restProps }) {
@@ -66,6 +67,13 @@ Header.TextLink = function HeaderTextLink({ children, ...restProps }) {
 
 Header.PlayButton = function HeaderPlayButton({ children, ...restProps }) {
   return <PlayButton {...restProps}>{children}</PlayButton>;
+};
+
+Header.PlayButtonSecundary = function HeaderPlayButtonSecundary({
+  children,
+  ...restProps
+}) {
+  return <PlayButtonSecundary {...restProps}>{children}</PlayButtonSecundary>;
 };
 
 Header.FeatureCallOut = function HeaderFeatureCallOut({

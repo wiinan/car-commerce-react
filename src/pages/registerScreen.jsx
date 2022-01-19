@@ -3,16 +3,18 @@ import Home from "./homePage/header";
 import { Button, TextField } from "@material-ui/core";
 import axios from "axios";
 import { Store } from "../store/context";
-import { Link } from "react-router-dom";
-import SignUp from "./registerScreen";
+import Login from "./LoginScreen";
 import "../components/login/styles/style.css";
 
-export default function Login() {
+export default function Register() {
   const [loading, setLoading] = useState(false);
+  const [usernameError, setUsernameError] = useState({ state: false, msg: "" });
   const [mailError, setMailError] = useState({ state: false, msg: "" });
   const [passwordError, setPasswordError] = useState({ state: false, msg: "" });
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const { state, dispatch } = useContext(Store);
   const { userInfo } = state;
 
@@ -21,45 +23,20 @@ export default function Login() {
   });
 
   const toogleSignUp = () => {
-    window.location.href = "/register";
+    window.location.href = "/login";
   };
 
-  const signin = async (e) => {
+  const signUp = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const data = { email, password };
+    const data = { name, email, password, confirmPassword };
+    console.log(data)
     await axios
-      .post("http://localhost:3000/api/login", data)
+      .post("http://localhost:3000/api/signup", data)
       .then((resp) => {
-        console.log(resp.data.userLogged);
-        localStorage.setItem("token", resp.data.userLogged);
+        console.log(resp.data);
+        window.location.href = "/login";
         setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-      });
-    await verifyToken(localStorage.getItem("token"));
-  };
-
-  const verifyToken = async (token) => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      token: token,
-    };
-    axios
-      .post("http://localhost:3000/api/verifyToken", {
-        headers: {
-          token: token,
-        },
-      })
-      .then((resp) => {
-        if (!resp.data.valid) {
-          localStorage.removeItem("token", null);
-        }
-
-        dispatch({ type: "USER_LOGIN", payload: token });
-        if (resp.data.valid) window.location.href = "/";
       })
       .catch((err) => {
         console.log(err);
@@ -71,7 +48,7 @@ export default function Login() {
     <>
       <Home />
       <div className="login">
-        <div className="login__content">
+        <div className="register__content">
           {loading && <div className="login__loading" />}
           <div className={`login__wrapper ${loading && "login__fade"}`}>
             <img
@@ -79,9 +56,20 @@ export default function Login() {
               src="http://www.google.co.uk/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
               alt="Google"
             />
-            <p className="login__title">Login</p>
+            <p className="login__title">Registar-se</p>
             <p className="login__subtitle">Continue na loja</p>
             <form className="login__form">
+              <TextField
+                id="outlined-basic"
+                label="Nome de Usuario"
+                variant="outlined"
+                className="login__input"
+                error={usernameError.state}
+                type="email"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                helperText={mailError.msg}
+              />
               <TextField
                 id="outlined-basic"
                 label="Email"
@@ -104,6 +92,17 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)}
                 helperText={passwordError.msg}
               />
+              <TextField
+                id="outlined-basic"
+                label="Confirmar Senha"
+                variant="outlined"
+                className="login__input"
+                error={passwordError.state}
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                helperText={passwordError.msg}
+              />
               <div className="login__infoText">
                 Nao esta usando seu PC? logar em guia privada?
                 <a target="_blank" href="/learnmore">
@@ -116,15 +115,15 @@ export default function Login() {
                   color="primary"
                   onClick={toogleSignUp}
                 >
-                  Criar Conta
+                  Fazer Login
                 </Button>
                 <Button
                   className="login__button"
                   color="primary"
                   variant="contained"
-                  onClick={signin}
+                  onClick={signUp}
                 >
-                  Logar
+                  Registrar-se
                 </Button>
               </div>
             </form>

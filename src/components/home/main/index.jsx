@@ -18,6 +18,8 @@ import {
   RightContainer,
   Slongan,
   SlonganStore,
+  TextSideLeft,
+  Group,
 } from "./style";
 
 export default function Main({ children, ...restProps }) {
@@ -46,6 +48,10 @@ Main.Slongan = function MainSlongan({ children, ...restProps }) {
 
 Main.SlonganStore = function SlonganStoreStore({ children, ...restProps }) {
   return <SlonganStore {...restProps}>{children}</SlonganStore>;
+};
+
+Main.TextSideLeft = function TextSideLeftStore({ children, ...restProps }) {
+  return <TextSideLeft {...restProps}>{children}</TextSideLeft>;
 };
 
 Main.Dropdown = function MainDropdown({ children, ...restProps }) {
@@ -94,4 +100,8 @@ Main.Logo = function MainLogo({ to, ...restProps }) {
 };
 Main.LogoCar = function MainLogoCar({ to, ...restProps }) {
   return <LogoCar {...restProps} />;
+};
+
+Main.Group = function MainGroup({ children, ...restProps }) {
+  return <Group {...restProps}>{children}</Group>;
 };

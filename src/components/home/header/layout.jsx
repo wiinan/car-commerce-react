@@ -65,10 +65,12 @@ export const Picture = css.button`
   height: 32px;
   cursor: pointer;
 `;
+
 export const Group = css.div`
   display: flex;
   align-items: center;
 `;
+
 export const Link = css.a`
   color: black;
   text-decoration: none;
@@ -132,11 +134,12 @@ export const SearchIcon = css.button`
 `;
 export const PlayButton = css.button`
     box-shadow:0 0.6vw 1vw -0.4vw rgba(0,0,0,0.35);
-    background-color:#e6e6e6;
-    color:#000;
+    background-color:${(props) => props.theme.primaryColor};
+    color: white;
     font-weight:bold;
     border-width:0;
-    padding:10px 20px;
+    padding:18px 30px;
+    margin-right: 3rem;
     border-radius:5px;
     max-width:130px;
     font-size:20px;
@@ -148,6 +151,27 @@ export const PlayButton = css.button`
         color:white;
     }
 `;
+
+export const PlayButtonSecundary = css.button`
+    box-shadow:0 0.6vw 1vw -0.4vw rgba(0,0,0,0.35);
+    background-color: tranparent;
+    color: ${props => props.theme.contrastDefault};
+    font-weight:bold;
+    border:${props => props.theme.borderDefault} ${props => props.theme.contrastDefault} solid;
+    padding:15px 20px;
+    margin-right: 3rem;
+    border-radius:5px;
+    max-width:130px;
+    font-size:20px;
+    margin-top:30px;
+    cursor:pointer;
+    transition:background-color:1s ease;
+    &:hover{
+        background-color:#ff1e1e;
+        color:white;
+    }
+`;
+
 export const SearchInput = css.input`
     background-color:#44444459;
     color:white;

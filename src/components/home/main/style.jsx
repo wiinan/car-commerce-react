@@ -25,6 +25,11 @@ export const Container = styled.div`
   }
 `;
 
+export const Group = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -42,22 +47,26 @@ export const RightContainer = styled.div`
 export const SlonganStore = styled.h1`
   font-weight: bold;
   font-size: 3rem;
-  line-height: 2rem;
+  width: 40rem;
+  line-height: 3rem;
   color: black;
-  margin-bottom: 3rem;
+`;
+
+export const TextSideLeft = styled.p`
+  margin: -1rem;
+  line-height: 4rem;
+  font-size: 1.3rem;
 `;
 
 export const Slongan = styled.h1`
   font-weight: bold;
   font-size: 1.2rem;
-  line-height: 2rem;
   color: ${(props) => props.theme.contrastDefault};
-  margin-bottom: 3rem;
 `;
 
 export const Logo = styled.img`
   position: relative;
-  transform: scale(1.4) rotate(90deg);
+  transform: scale(1.3) rotate(90deg);
   top: -20%;
 `;
 
@@ -72,11 +81,6 @@ export const Picture = styled.button`
   width: 32px;
   height: 32px;
   cursor: pointer;
-`;
-
-export const Group = styled.div`
-  display: flex;
-  align-items: center;
 `;
 
 export const Link = styled.p`
