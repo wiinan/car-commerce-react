@@ -1,7 +1,7 @@
 import React from "react";
 import Home from "./pages/homePage/index";
-import Login from "./pages/LoginScreen";
-import Register from "./pages/registerScreen";
+import Login from "./pages/loginPage/LoginScreen";
+import Register from "./pages/registerPage/registerScreen";
 import { Routes, Route } from "react-router-dom";
 import { StoreProvider } from "./store/context";
 

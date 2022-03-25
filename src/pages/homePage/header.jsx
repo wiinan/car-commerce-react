@@ -2,8 +2,12 @@ import React from "react";
 import { Header } from "../../components";
 import LoginIcon from "@mui/icons-material/Login";
 import DirectionsCarFilledOutlinedIcon from "@mui/icons-material/DirectionsCarFilledOutlined";
+import { useNavigate } from "react-router-dom";
 
 export default function HeaderTemplate({ children }) {
+  const navigate = useNavigate();
+  const handleRedirect = url => navigate(url);
+
   return (
     <>
       <Header>
@@ -11,15 +15,15 @@ export default function HeaderTemplate({ children }) {
           <Header.LogoContainer>
             <Header.LogoText>
               <Header.Rotate>
-                <DirectionsCarFilledOutlinedIcon fontSize="large" /> CarStore
+                <DirectionsCarFilledOutlinedIcon onClick={() => handleRedirect('/')} fontSize="large" /> CarStore
               </Header.Rotate>
             </Header.LogoText>
           </Header.LogoContainer>
           <Header.Frame>
-            <Header.TextLink href={"/"}>Inicio</Header.TextLink>
+            <Header.TextLink onClick={() => handleRedirect('/')}>Inicio</Header.TextLink>
             <Header.TextLink>Loja</Header.TextLink>
             <Header.TextLink>Perfil</Header.TextLink>
-            <Header.ColorButton variant="outlined" startIcon={<LoginIcon />}>
+            <Header.ColorButton onClick={() => handleRedirect('/login')} variant="outlined" startIcon={<LoginIcon />}>
               Login
             </Header.ColorButton>
           </Header.Frame>

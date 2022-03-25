@@ -1,9 +1,18 @@
 import React from "react";
+import { verifyToken} from '../../services/api';
 import { Main, Header } from "../../components";
 import logo from "../../assets/images/blob.svg";
 import macLaren from "../../assets/images/mclaren-orange-big.png";
+import { useNavigate } from "react-router-dom";
 
 export default function MainTemplate() {
+  const history = useNavigate();
+  const handleRedirect = (route) => {
+    history(route);
+  };
+
+  const tokenVerificated = verifyToken().then(resp => console.log(resp));
+
   return (
     <>
       <Main>
@@ -22,8 +31,17 @@ export default function MainTemplate() {
               nossos produtos
             </Main.TextSideLeft>
             <Main.Group>
-              <Header.PlayButton>Login</Header.PlayButton>
-              <Header.PlayButtonSecundary>Registrar</Header.PlayButtonSecundary>
+              {
+
+              }
+              <Header.PlayButton onClick={() => handleRedirect("/login")}>
+                Login
+              </Header.PlayButton>
+              <Header.PlayButtonSecundary
+                onClick={() => handleRedirect("/register")}
+              >
+                Registrar
+              </Header.PlayButtonSecundary>
             </Main.Group>
           </Main.LeftContainer>
           <Main.RightContainer>

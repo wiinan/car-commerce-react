@@ -21,6 +21,7 @@ import {
   TextSideLeft,
   Group,
 } from "./style";
+// import { Link } from "react-router-dom";
 
 export default function Main({ children, ...restProps }) {
   return <TopSectionContainer {...restProps}>{children}</TopSectionContainer>;
@@ -44,6 +45,10 @@ Main.RightContainer = function MainRightContainer({ children, ...restProps }) {
 
 Main.Slongan = function MainSlongan({ children, ...restProps }) {
   return <Slongan {...restProps}>{children}</Slongan>;
+};
+
+Main.SlonganLink = function MainSlonganLink({ children, ...restProps }) {
+  return <Link {...restProps}>{children}</Link>;
 };
 
 Main.SlonganStore = function SlonganStoreStore({ children, ...restProps }) {
